@@ -181,7 +181,10 @@ namespace ControleAcesso2019
 
         private void cmd_serial_Click(object sender, EventArgs e)
         {
-            conectarserial();
+            MenuSerial menuSerial = new MenuSerial();
+
+            menuSerial.ShowDialog(); 
+            // conectarserial();
         }
         
         //======================================================================

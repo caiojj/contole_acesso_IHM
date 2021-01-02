@@ -132,6 +132,12 @@
     <Compile Include="frmAdicinar.Designer.cs">
       <DependentUpon>frmAdicinar.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuSerial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuSerial.Designer.cs">
+      <DependentUpon>MenuSerial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sobre.cs">
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdicinar.resx">
       <DependentUpon>frmAdicinar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuSerial.resx">
+      <DependentUpon>MenuSerial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
