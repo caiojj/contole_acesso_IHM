@@ -46,7 +46,7 @@ namespace ControleAcesso2019
                 MessageBox.Show("Senha não confere!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();
             SqlCeCommand comando = new SqlCeCommand();
             comando.Connection = conexao;

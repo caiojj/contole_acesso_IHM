@@ -43,7 +43,7 @@ namespace ControleAcesso2019
                 return;
             }
 
-            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();
             SqlCeCommand comando = new SqlCeCommand();
             comando.Connection = conexao;
@@ -80,7 +80,7 @@ namespace ControleAcesso2019
         {
             
 
-           SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+           SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
            conexao.Open();
 
            DataTable dados = new DataTable();

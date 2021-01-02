@@ -33,7 +33,7 @@ namespace ControleAcesso2019
 
         private void cmd_login_Click(object sender, EventArgs e)
         {
-            SqlCeConnection conexao = new SqlCeConnection(@"Data Source =" + vars.baseDadosLocal);
+            SqlCeConnection conexao = new SqlCeConnection(@"Data Source =" + Vars.baseDadosLocal);
             conexao.Open();
 
             SqlCeCommand comando = new SqlCeCommand();

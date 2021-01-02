@@ -45,7 +45,7 @@ namespace ControleAcesso2019
 
         private void CriaTabelaRegistros() // cria tabela de colaboradores cadastrados
         {
-            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + Vars.base_dados);
             conexao.Open();
 
             SqlCeCommand comando = new SqlCeCommand();
@@ -76,7 +76,7 @@ namespace ControleAcesso2019
 
         private void CriaTabelaHistorico()  // cria tabala de históricos de acesso
         {
-            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + Vars.base_dados);
             conexao.Open();
 
             string query = "SELECT * FROM HistoricoAcesso";
@@ -114,7 +114,7 @@ namespace ControleAcesso2019
 
         private void CriaTabelaAcesso() // cria tabela de colaboradores que estão acessando o local
         {
-            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + Vars.base_dados);
             conexao.Open();
 
             SqlCeCommand comando = new SqlCeCommand();
@@ -273,7 +273,7 @@ namespace ControleAcesso2019
             // Remove os caracteres '\r' da variavel id+TagRFID 
             id_TagRFID = id_TagRFID.Replace("\r", "");
 
-            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();
 
             string query = "SELECT * FROM RegistrosColaboradores WHERE id_TagRFID = " + "'" + id_TagRFID + "'";
@@ -492,7 +492,7 @@ namespace ControleAcesso2019
             {
                 if (MessageBox.Show("Tem certeza que deseja excluir esté registro?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                 {
-                    SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+                    SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
                     conexao.Open();
 
                     SqlCeCommand comando = new SqlCeCommand("DELETE FROM RegistrosColaboradores WHERE id_NP =" + id_NP, conexao);
@@ -568,7 +568,7 @@ namespace ControleAcesso2019
 
         private void Acessando()
         {
-            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();
 
             SqlCeCommand comando = new SqlCeCommand();
@@ -613,7 +613,7 @@ namespace ControleAcesso2019
         private void DescarteAcesso()
         {
            
-           SqlCeConnection conexao = new SqlCeConnection("Data Source =" + vars.base_dados);
+           SqlCeConnection conexao = new SqlCeConnection("Data Source =" + Vars.base_dados);
            conexao.Open();
 
            SqlCeCommand comando = new SqlCeCommand();
@@ -641,7 +641,7 @@ namespace ControleAcesso2019
 
 
 
-            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + Vars.base_dados);
             conexao.Open();
 
             DataTable tabela_Data_Pesquisa = new DataTable();
@@ -734,7 +734,7 @@ namespace ControleAcesso2019
 
         private void Executar_Pesquisa()
         {
-            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + Vars.base_dados);
             conexao.Open();
 
             SqlCeCommand comando = new SqlCeCommand();
@@ -756,7 +756,7 @@ namespace ControleAcesso2019
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();
 
             SqlCeCommand comando = new SqlCeCommand();
@@ -814,7 +814,7 @@ namespace ControleAcesso2019
 
         private void verifica_Admin_Adicionado() // verifica ja foi adicionado um admin
         {
-            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();
 
             SqlCeCommand comando = new SqlCeCommand();
@@ -837,7 +837,7 @@ namespace ControleAcesso2019
 
         private void Led_Estadia_Porao()
         {
-            SqlCeConnection conexao = new SqlCeConnection(@"Data Source = " + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection(@"Data Source = " + Vars.base_dados);
             conexao.Open();
 
             SqlCeCommand comando = new SqlCeCommand();
@@ -885,7 +885,7 @@ namespace ControleAcesso2019
 
         private void exibir_Local_Acesso()
         {
-            SqlCeConnection conexao = new SqlCeConnection(@"Data Source = " + vars.baseDadosLocal);
+            SqlCeConnection conexao = new SqlCeConnection(@"Data Source = " + Vars.baseDadosLocal);
             conexao.Open();
 
             SqlCeCommand comando = new SqlCeCommand();

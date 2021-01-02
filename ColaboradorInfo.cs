@@ -29,7 +29,7 @@ namespace ControleAcesso2019
         private  void CriaTabelaInfo()
         {
             
-            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();
 
 
@@ -93,7 +93,7 @@ namespace ControleAcesso2019
 
             
 
-            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source =" + Vars.base_dados);
             conexao.Open();
 
             DataTable tabela_Data_Pesquisa = new DataTable();
@@ -128,7 +128,7 @@ namespace ControleAcesso2019
             {
                 if (MessageBox.Show("Tem certeza que deseja apagar todo o histórico?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                 {
-                    SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+                    SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
                     conexao.Open();
 
                     SqlCeCommand comando = new SqlCeCommand("DELETE FROM HistoricoAcesso WHERE id_NP =" + id_NP, conexao);

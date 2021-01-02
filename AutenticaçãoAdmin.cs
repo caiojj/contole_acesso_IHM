@@ -32,7 +32,7 @@ namespace ControleAcesso2019
                 MessageBox.Show("Por favor preencha todos os campos.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-                SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+                SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
                 conexao.Open();
 
                 SqlCeCommand comando = new SqlCeCommand();

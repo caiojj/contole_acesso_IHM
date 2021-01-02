@@ -38,7 +38,7 @@ namespace ControleAcesso2019
             }
             
             // Inicia conexão com o banco de dados
-            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + vars.base_dados);
+            SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();
             // Define a conexão usada pela instancia criada
             SqlCeCommand comando = new SqlCeCommand();

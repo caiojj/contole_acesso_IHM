@@ -140,7 +140,7 @@
     <Compile Include="Sobre.Designer.cs">
       <DependentUpon>Sobre.cs</DependentUpon>
     </Compile>
-    <Compile Include="vars.cs" />
+    <Compile Include="Vars.cs" />
     <Compile Include="Verificador.cs">
       <SubType>Form</SubType>
     </Compile>

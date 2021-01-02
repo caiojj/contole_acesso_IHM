@@ -17,7 +17,7 @@ namespace ControleAcesso2019
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            vars.Iniciar();
+            Vars.Iniciar();
             Application.Run(new frmMenu());
         }
     }
