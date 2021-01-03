@@ -1,11 +1,7 @@
 ﻿using System;
-//using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlServerCe;
 using System.IO.Ports;
@@ -184,7 +180,7 @@ namespace ControleAcesso2019
             MenuSerial menuSerial = new MenuSerial();
 
             menuSerial.ShowDialog(); 
-            // conectarserial();
+            conectarserial();
         }
         
         //======================================================================
@@ -227,8 +223,7 @@ namespace ControleAcesso2019
             {
                 try
                 {
-
-                    arduino.PortName = box_COM.Items[box_COM.SelectedIndex].ToString();
+                    arduino.PortName = MenuSerial.port_com;
                     arduino.Open();
 
                 }
@@ -779,8 +774,7 @@ namespace ControleAcesso2019
                 {
                     AutenticaçãoAdmin abrir = new AutenticaçãoAdmin();
                     abrir.ShowDialog();
-                }
-                if (status_Login)
+                } else
                 {
                     adicionarAdminToolStripMenuItem.Visible = true;
                     sairToolStripMenuItem.Visible = true;
@@ -815,7 +809,7 @@ namespace ControleAcesso2019
             verifica_Admin_Adicionado();
         }
 
-        private void verifica_Admin_Adicionado() // verifica ja foi adicionado um admin
+        private void verifica_Admin_Adicionado() // verifica se ja foi adicionado um admin
         {
             SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();

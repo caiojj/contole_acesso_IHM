@@ -47,7 +47,7 @@ namespace ControleAcesso2019
             this.port_name = new System.Windows.Forms.ComboBox();
             this.button_cancelar = new System.Windows.Forms.Button();
             this.stop_bits = new System.Windows.Forms.ComboBox();
-            this.parity = new System.Windows.Forms.ComboBox();
+            this.boxParity = new System.Windows.Forms.ComboBox();
             this.baud_rate = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmd_MINIMIZAR)).BeginInit();
@@ -222,6 +222,8 @@ namespace ControleAcesso2019
             // 
             this.port_name.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.port_name.FormattingEnabled = true;
+            this.port_name.Items.AddRange(new object[] {
+            "COM 1"});
             this.port_name.Location = new System.Drawing.Point(92, 137);
             this.port_name.Name = "port_name";
             this.port_name.Size = new System.Drawing.Size(346, 21);
@@ -253,19 +255,20 @@ namespace ControleAcesso2019
             this.stop_bits.Size = new System.Drawing.Size(346, 21);
             this.stop_bits.TabIndex = 67;
             // 
-            // parity
+            // boxParity
             // 
-            this.parity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.parity.FormattingEnabled = true;
-            this.parity.Items.AddRange(new object[] {
+            this.boxParity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.boxParity.FormattingEnabled = true;
+            this.boxParity.Items.AddRange(new object[] {
             "None"});
-            this.parity.Location = new System.Drawing.Point(90, 75);
-            this.parity.Name = "parity";
-            this.parity.Size = new System.Drawing.Size(346, 21);
-            this.parity.TabIndex = 68;
+            this.boxParity.Location = new System.Drawing.Point(90, 75);
+            this.boxParity.Name = "boxParity";
+            this.boxParity.Size = new System.Drawing.Size(346, 21);
+            this.boxParity.TabIndex = 68;
             // 
             // baud_rate
             // 
+            this.baud_rate.DisplayMember = "vcxzv";
             this.baud_rate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.baud_rate.FormattingEnabled = true;
             this.baud_rate.Items.AddRange(new object[] {
@@ -293,7 +296,7 @@ namespace ControleAcesso2019
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(450, 210);
             this.Controls.Add(this.baud_rate);
-            this.Controls.Add(this.parity);
+            this.Controls.Add(this.boxParity);
             this.Controls.Add(this.stop_bits);
             this.Controls.Add(this.button_cancelar);
             this.Controls.Add(this.port_name);
@@ -344,7 +347,7 @@ namespace ControleAcesso2019
         private System.Windows.Forms.ComboBox port_name;
         private System.Windows.Forms.Button button_cancelar;
         private System.Windows.Forms.ComboBox stop_bits;
-        private System.Windows.Forms.ComboBox parity;
+        private System.Windows.Forms.ComboBox boxParity;
         private System.Windows.Forms.ComboBox baud_rate;
     }
 }
