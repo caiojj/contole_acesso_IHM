@@ -17,11 +17,11 @@ namespace ControleAcesso2019
         public static string id_TagRFID { get; set; }
         public static string local_Acesso { get; set; }
         bool led_Ligado = false;
-        //====================================================
+
         Point ArrastarCursor;
         Point ArrastarForm;
         bool Arrastando;
-        //====================================================
+
         public frmMenu()
         {
             InitializeComponent();
@@ -37,9 +37,8 @@ namespace ControleAcesso2019
             exibir_Local_Acesso();
         }
 
-        //======================================================================
-
-        private void CriaTabelaRegistros() // cria tabela de colaboradores cadastrados
+        // cria tabela de colaboradores cadastrados
+        private void CriaTabelaRegistros() 
         {
             SqlCeConnection conexao = new SqlCeConnection("Data Source =" + Vars.base_dados);
             conexao.Open();
@@ -68,7 +67,6 @@ namespace ControleAcesso2019
             tabela_registros.ClearSelection();
         }
         
-        //======================================================================
 
         private void CriaTabelaHistorico()  // cria tabala de históricos de acesso
         {
@@ -136,16 +134,14 @@ namespace ControleAcesso2019
             tabela_Acesso_Atual.ClearSelection();
         }
         
-        //======================================================================
 
         private int CalcularLargura (int porcentagem)
         {
             int largura_tabela = tabela_registros.Width - 20;
-            int resultado = (largura_tabela * porcentagem) / 100;
+            int resultado = largura_tabela * porcentagem / 100;
             return resultado;
         }
         
-        //======================================================================
 
         private void cmd_adicionar_Click(object sender, EventArgs e)
         {
@@ -159,31 +155,27 @@ namespace ControleAcesso2019
                     frmAdicinar abrir = new frmAdicinar();
                     abrir.ShowDialog();
                     Verificador.verifica_Valor_Tag = false;
-                }
-
-                if (frmAdicinar.validar_Adicionar)
-                {
+                    
                     CriaTabelaRegistros();
                     frmAdicinar.validar_Adicionar = false;
                 }
             }
+
             else
             {
-                MessageBox.Show("Para habilitar está função, faça login como admin.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Para habilitar está função, faça login como admin.", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         
-        //======================================================================
 
         private void cmd_serial_Click(object sender, EventArgs e)
         {
             MenuSerial menuSerial = new MenuSerial();
 
-            menuSerial.ShowDialog(); 
+            menuSerial.ShowDialog();
             conectarserial();
         }
         
-        //======================================================================
 
         private void AtualizacaoListaCOM()  // Atualiza portas COM 
         {
@@ -195,7 +187,7 @@ namespace ControleAcesso2019
             }
 
 
-            //limpa combobox
+            //limpa comboBox
             box_COM.Items.Clear();
             try
             {
@@ -213,9 +205,7 @@ namespace ControleAcesso2019
                 box_COM.Text = "";
                 MessageBox.Show("Favor Conectar o Arduino a Porta COM ", "Nenhuma Porta COM Encontrada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        } 
-        
-        //======================================================================
+        }
 
         private void conectarserial()
         {
@@ -226,17 +216,14 @@ namespace ControleAcesso2019
                     arduino.PortName = MenuSerial.port_com;
                     arduino.Open();
 
+                    cmd_serial.Image = ControleAcesso2019.Properties.Resources.icons8_usb_on_48;
+                    box_COM.Enabled = false;
+
                 }
                 catch
                 {
                     MessageBox.Show("Erro ao se conectar a SerialPort", "Falha na SerialPort", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
-                }
-
-                if (arduino.IsOpen)
-                {
-                    cmd_serial.Image = ControleAcesso2019.Properties.Resources.icons8_usb_on_48;
-                    box_COM.Enabled = false;
                 }
 
             }
@@ -250,7 +237,6 @@ namespace ControleAcesso2019
             }
         }
         
-        //======================================================================
 
         private void arduino_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
@@ -258,7 +244,6 @@ namespace ControleAcesso2019
             Invoke(new EventHandler(TratamentoDados));
         }
 
-        //======================================================================
 
         private void TratamentoDados(object sender, EventArgs e)
         {
