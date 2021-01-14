@@ -99,7 +99,6 @@ namespace ControleAcesso2019
             this.salvar_serial.Name = "salvar_serial";
             this.salvar_serial.Size = new System.Drawing.Size(179, 26);
             this.salvar_serial.TabIndex = 39;
-            this.salvar_serial.Text = "Salvar";
             this.salvar_serial.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.salvar_serial.UseVisualStyleBackColor = false;
             this.salvar_serial.Click += new System.EventHandler(this.salvar_serial_Click);
@@ -148,13 +147,13 @@ namespace ControleAcesso2019
             // 
             this.textBox_data_bits.BackColor = System.Drawing.Color.White;
             this.textBox_data_bits.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_data_bits.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_data_bits.Font = new System.Drawing.Font("Arial", 8.25F);
             this.textBox_data_bits.ForeColor = System.Drawing.Color.Black;
-            this.textBox_data_bits.Location = new System.Drawing.Point(90, 49);
+            this.textBox_data_bits.Location = new System.Drawing.Point(94, 49);
             this.textBox_data_bits.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
             this.textBox_data_bits.MaxLength = 50;
             this.textBox_data_bits.Name = "textBox_data_bits";
-            this.textBox_data_bits.Size = new System.Drawing.Size(348, 18);
+            this.textBox_data_bits.Size = new System.Drawing.Size(344, 13);
             this.textBox_data_bits.TabIndex = 52;
             this.textBox_data_bits.Text = "8";
             // 
@@ -249,22 +248,30 @@ namespace ControleAcesso2019
             this.stop_bits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stop_bits.FormattingEnabled = true;
             this.stop_bits.Items.AddRange(new object[] {
-            "One"});
+            "One",
+            "Two",
+            "OnePointeFive"});
             this.stop_bits.Location = new System.Drawing.Point(90, 103);
             this.stop_bits.Name = "stop_bits";
             this.stop_bits.Size = new System.Drawing.Size(346, 21);
             this.stop_bits.TabIndex = 67;
+            this.stop_bits.Text = "One";
             // 
             // boxParity
             // 
             this.boxParity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.boxParity.FormattingEnabled = true;
             this.boxParity.Items.AddRange(new object[] {
-            "None"});
+            "None",
+            "Odd",
+            "Even",
+            "Mark",
+            "Space"});
             this.boxParity.Location = new System.Drawing.Point(90, 75);
             this.boxParity.Name = "boxParity";
             this.boxParity.Size = new System.Drawing.Size(346, 21);
             this.boxParity.TabIndex = 68;
+            this.boxParity.Text = "None";
             // 
             // baud_rate
             // 
@@ -287,14 +294,15 @@ namespace ControleAcesso2019
             this.baud_rate.Name = "baud_rate";
             this.baud_rate.Size = new System.Drawing.Size(346, 21);
             this.baud_rate.TabIndex = 69;
+            this.baud_rate.Text = "9600";
             // 
             // MenuSerial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(450, 210);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(448, 208);
+            this.ControlBox = false;
             this.Controls.Add(this.baud_rate);
             this.Controls.Add(this.boxParity);
             this.Controls.Add(this.stop_bits);
@@ -313,12 +321,15 @@ namespace ControleAcesso2019
             this.Controls.Add(this.label_baud_rate);
             this.Controls.Add(this.salvar_serial);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(450, 210);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(450, 210);
             this.Name = "MenuSerial";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "MenuSerial";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmd_MINIMIZAR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmd_FECHAR)).EndInit();

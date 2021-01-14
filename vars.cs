@@ -13,6 +13,8 @@ namespace ControleAcesso2019
         public static string pasta_dados_LocalPC;
         public static string baseDadosLocal;
 
+
+        // Cria pasta e arquivo sql lite
         public static void Iniciar()
         {
 
@@ -46,6 +48,7 @@ namespace ControleAcesso2019
 
         }
 
+        //Cria tabelas do banco de dados
         public static void CriaBaseDados()
         {
             // cria base de dados
@@ -99,6 +102,7 @@ namespace ControleAcesso2019
 
         }
 
+        // Cria tabela para admin
         public static void CriaBaseDadosLocalAcesso()
         {
 

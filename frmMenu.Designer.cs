@@ -49,7 +49,6 @@
             this.cmd_pesquisar = new System.Windows.Forms.PictureBox();
             this.tabela_acessando = new System.Windows.Forms.TabPage();
             this.tabela_Acesso_Atual = new System.Windows.Forms.DataGridView();
-            this.box_COM = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmd_MINIMIZAR = new System.Windows.Forms.PictureBox();
@@ -311,16 +310,6 @@
             this.tabela_Acesso_Atual.TabStop = false;
             this.tabela_Acesso_Atual.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabela_Acesso_Atual_CellClick);
             // 
-            // box_COM
-            // 
-            this.box_COM.BackColor = System.Drawing.Color.White;
-            this.box_COM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.box_COM.FormattingEnabled = true;
-            this.box_COM.Location = new System.Drawing.Point(12, 353);
-            this.box_COM.Name = "box_COM";
-            this.box_COM.Size = new System.Drawing.Size(58, 21);
-            this.box_COM.TabIndex = 6;
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -501,7 +490,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.box_COM);
             this.Controls.Add(this.cmd_serial);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cmd_propriedades);
@@ -559,7 +547,6 @@
         private System.Windows.Forms.DataGridView tabela_historico_acesso;
         private System.Windows.Forms.DataGridView tabela_registros;
         private System.Windows.Forms.PictureBox cmd_serial;
-        private System.Windows.Forms.ComboBox box_COM;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox cmd_FECHAR;

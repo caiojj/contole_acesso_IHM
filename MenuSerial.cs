@@ -11,13 +11,14 @@ namespace ControleAcesso2019
         public static string parity { get; set; }
         public static string stop { get; set; }
         public static string port_com { get; set; }
+        public static bool conectado { get; set; }
 
         public MenuSerial()
         {
             InitializeComponent();
             AtualizacaoListaCOM();
+            EstaConectado();
         }
-
 
         private void salvar_serial_Click(object sender, EventArgs e)
         {
@@ -26,6 +27,8 @@ namespace ControleAcesso2019
             parity = boxParity.Text;
             stop = stop_bits.Text.ToString();
             port_com = port_name.Text.ToString();
+            conectado = true;
+            Close();
         }
 
         private void button_cancelar_Click(object sender, EventArgs e)
@@ -33,6 +36,19 @@ namespace ControleAcesso2019
             Close();
         }
 
+        // Responsavel por alterar estatus do button de conexão
+        private void EstaConectado()
+        {
+            if (conectado)
+            {
+                salvar_serial.Text = "Desconectar";
+            } else
+            {
+                salvar_serial.Text = "Conectar";
+            }
+        }
+
+        // Atualiza as portas usb conectadas
         private void AtualizacaoListaCOM()  // Atualiza portas COM 
         {
             // se a quantidade mudar
@@ -58,8 +74,8 @@ namespace ControleAcesso2019
             }
             catch
             {
-                port_name.Text = "";
-                MessageBox.Show("Favor Conectar o Arduino a Porta COM ", "Nenhuma Porta COM Encontrada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                port_name.Text = "Selecione uma porta";
+                MessageBox.Show("Favor Conectar o Arduino a Porta USB ", "Nenhuma porta encontrada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
