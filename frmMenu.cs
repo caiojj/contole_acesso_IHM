@@ -1,11 +1,7 @@
 ﻿using System;
-//using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlServerCe;
 using System.IO.Ports;
@@ -21,15 +17,14 @@ namespace ControleAcesso2019
         public static string id_TagRFID { get; set; }
         public static string local_Acesso { get; set; }
         bool led_Ligado = false;
-        //====================================================
+
         Point ArrastarCursor;
         Point ArrastarForm;
         bool Arrastando;
-        //====================================================
+
         public frmMenu()
         {
             InitializeComponent();
-            AtualizacaoListaCOM();
             CriaTabelaRegistros();
             CriaTabelaHistorico();
             CriaTabelaAcesso();
@@ -41,9 +36,8 @@ namespace ControleAcesso2019
             exibir_Local_Acesso();
         }
 
-        //======================================================================
-
-        private void CriaTabelaRegistros() // cria tabela de colaboradores cadastrados
+        // cria tabela de colaboradores cadastrados
+        private void CriaTabelaRegistros() 
         {
             SqlCeConnection conexao = new SqlCeConnection("Data Source =" + Vars.base_dados);
             conexao.Open();
@@ -72,7 +66,6 @@ namespace ControleAcesso2019
             tabela_registros.ClearSelection();
         }
         
-        //======================================================================
 
         private void CriaTabelaHistorico()  // cria tabala de históricos de acesso
         {
@@ -110,7 +103,6 @@ namespace ControleAcesso2019
             tabela_historico_acesso.ClearSelection();
         } 
         
-        //======================================================================
 
         private void CriaTabelaAcesso() // cria tabela de colaboradores que estão acessando o local
         {
@@ -140,16 +132,14 @@ namespace ControleAcesso2019
             tabela_Acesso_Atual.ClearSelection();
         }
         
-        //======================================================================
 
         private int CalcularLargura (int porcentagem)
         {
             int largura_tabela = tabela_registros.Width - 20;
-            int resultado = (largura_tabela * porcentagem) / 100;
+            int resultado = largura_tabela * porcentagem / 100;
             return resultado;
         }
         
-        //======================================================================
 
         private void cmd_adicionar_Click(object sender, EventArgs e)
         {
@@ -163,60 +153,30 @@ namespace ControleAcesso2019
                     frmAdicinar abrir = new frmAdicinar();
                     abrir.ShowDialog();
                     Verificador.verifica_Valor_Tag = false;
-                }
-
-                if (frmAdicinar.validar_Adicionar)
-                {
+                    
                     CriaTabelaRegistros();
                     frmAdicinar.validar_Adicionar = false;
                 }
             }
+
             else
             {
-                MessageBox.Show("Para habilitar está função, faça login como admin.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Para habilitar está função, faça login como admin.", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         
-        //======================================================================
 
         private void cmd_serial_Click(object sender, EventArgs e)
         {
-            conectarserial();
+            MenuSerial menuSerial = new MenuSerial();
+            menuSerial.ShowDialog();
+
+            if (MenuSerial.conectado)
+            {
+                conectarserial();
+            }
         }
         
-        //======================================================================
-
-        private void AtualizacaoListaCOM()  // Atualiza portas COM 
-        {
-            // se a quantidade mudar
-             if (box_COM.Items.Count == SerialPort.GetPortNames().Length)
-            {
-                return;
-               
-            }
-
-
-            //limpa combobox
-            box_COM.Items.Clear();
-            try
-            {
-                // adiciona todas as COM disponiveis na lista
-                foreach (string s in SerialPort.GetPortNames())
-                {
-                    box_COM.Items.Add(s);
-                }
-
-                box_COM.SelectedIndex = 0;
-
-            }
-            catch
-            {
-                box_COM.Text = "";
-                MessageBox.Show("Favor Conectar o Arduino a Porta COM ", "Nenhuma Porta COM Encontrada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        } 
-        
-        //======================================================================
 
         private void conectarserial()
         {
@@ -224,21 +184,55 @@ namespace ControleAcesso2019
             {
                 try
                 {
+                    arduino.BaudRate = int.Parse(MenuSerial.baud);
+                    switch(MenuSerial.parity)
+                    {
+                        case "None":
+                            arduino.Parity = Parity.None;
+                            break;
+                        case "Odd":
+                            arduino.Parity = Parity.Odd;
+                            break;
+                        case "Space":
+                            arduino.Parity = Parity.Space;
+                            break;
+                        case "Mark":
+                            arduino.Parity = Parity.Mark;
+                            break;
+                        case "Even":
+                            arduino.Parity = Parity.Even;
+                            break;
+                    }
 
-                    arduino.PortName = box_COM.Items[box_COM.SelectedIndex].ToString();
+                    switch(MenuSerial.stop)
+                    {
+                        case "None":
+                            arduino.StopBits = StopBits.None;
+                            break;
+                        case "One":
+                            arduino.StopBits = StopBits.One;
+                            break;
+                        case "Two":
+                            arduino.StopBits = StopBits.Two;
+                            break;
+                        case "OnePointFive":
+                            arduino.StopBits = StopBits.OnePointFive;
+                            break;
+                    }
+
+                    arduino.PortName = MenuSerial.port_com;
+
                     arduino.Open();
+                    MenuSerial.conectado = true;
+
+                    cmd_serial.Image = ControleAcesso2019.Properties.Resources.icons8_usb_on_48;
 
                 }
                 catch
                 {
+                    MenuSerial.conectado = false;
                     MessageBox.Show("Erro ao se conectar a SerialPort", "Falha na SerialPort", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
-                }
-
-                if (arduino.IsOpen)
-                {
-                    cmd_serial.Image = ControleAcesso2019.Properties.Resources.icons8_usb_on_48;
-                    box_COM.Enabled = false;
                 }
 
             }
@@ -246,13 +240,11 @@ namespace ControleAcesso2019
             {
                
                 arduino.Close();
-                box_COM.Enabled = true;
                 cmd_serial.Image = ControleAcesso2019.Properties.Resources.icons8_usb_off_48;
                 
             }
         }
         
-        //======================================================================
 
         private void arduino_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
@@ -260,7 +252,6 @@ namespace ControleAcesso2019
             Invoke(new EventHandler(TratamentoDados));
         }
 
-        //======================================================================
 
         private void TratamentoDados(object sender, EventArgs e)
         {
@@ -397,29 +388,24 @@ namespace ControleAcesso2019
             }
         }
         
-        //======================================================================
 
         private void frmMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
             arduino.Close();
         }
         
-        //======================================================================
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            AtualizacaoListaCOM();
             Led_Estadia_Porao();
         }
         
-        //======================================================================
-
         private void cmd_editar_Click(object sender, EventArgs e)
         { 
-            frmEditar editar = new frmEditar(id_NP);
 
             if (status_Login)
             {
+                frmEditar editar = new frmEditar(id_NP);
                 editar.ShowDialog();
             }
             else
@@ -435,7 +421,6 @@ namespace ControleAcesso2019
             }
         }
         
-        //======================================================================
 
         private void tabela_registros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -454,7 +439,6 @@ namespace ControleAcesso2019
             }
         }
         
-        //======================================================================
 
         private void tabela_historico_acesso_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -469,7 +453,6 @@ namespace ControleAcesso2019
             }
         }
 
-        //======================================================================
 
         private void tabela_Acesso_Atual_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -484,7 +467,6 @@ namespace ControleAcesso2019
             }
         }
         
-        //======================================================================
 
         private void cmd_apagar_Click(object sender, EventArgs e)
         {
@@ -515,7 +497,6 @@ namespace ControleAcesso2019
             }
         }
         
-        //======================================================================
 
         private void ApagarEditarOff()
         {
@@ -524,7 +505,6 @@ namespace ControleAcesso2019
             cmd_propriedades.Enabled = false;
         }
 
-        //===============================================================
 
         private void cmd_FECHAR_Click(object sender, EventArgs e)
         {
@@ -538,7 +518,6 @@ namespace ControleAcesso2019
             this.WindowState = FormWindowState.Minimized;
         }
         
-        //======================================================================
 
         private void cmd_propriedades_Click(object sender, EventArgs e)
         {
@@ -556,7 +535,6 @@ namespace ControleAcesso2019
             cmd_propriedades.Enabled = false;
         }
         
-        //======================================================================
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -564,7 +542,6 @@ namespace ControleAcesso2019
             abrirSobre.ShowDialog();
         }
         
-        //======================================================================
 
         private void Acessando()
         {
@@ -608,7 +585,6 @@ namespace ControleAcesso2019
             CriaTabelaAcesso();
         }
 
-        //======================================================================
 
         private void DescarteAcesso()
         {
@@ -626,7 +602,6 @@ namespace ControleAcesso2019
            CriaTabelaAcesso();
         }
 
-        //======================================================================
 
         private void cmd_pesquisar_Click(object sender, EventArgs e)
         {
@@ -666,28 +641,25 @@ namespace ControleAcesso2019
             label_N_acessos.Text = "Nº Acessos: " + tabela_historico_acesso.Rows.Count;
         }
 
-        //======================================================================
 
         private void cmd_atualizar_Click(object sender, EventArgs e)
         {
             CriaTabelaHistorico();
         }
       
-        //======================================================================
 
         private void cmd_pesquisar_registros_Click(object sender, EventArgs e)
         {
             Executar_Pesquisa();
 
         }
-        //======================================================================
+
 
         private void cmd_atualizar_registros_Click(object sender, EventArgs e)
         {
             CriaTabelaRegistros();
             CriaTabelaAcesso();
         }
-        //======================================================================
 
         #region Evento de click arraste
         private void panel1_MouseUp(object sender, MouseEventArgs e)
@@ -711,7 +683,6 @@ namespace ControleAcesso2019
             }
         }
         #endregion
-        //======================================================================
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
@@ -776,8 +747,7 @@ namespace ControleAcesso2019
                 {
                     AutenticaçãoAdmin abrir = new AutenticaçãoAdmin();
                     abrir.ShowDialog();
-                }
-                if (status_Login)
+                } else
                 {
                     adicionarAdminToolStripMenuItem.Visible = true;
                     sairToolStripMenuItem.Visible = true;
@@ -812,7 +782,7 @@ namespace ControleAcesso2019
             verifica_Admin_Adicionado();
         }
 
-        private void verifica_Admin_Adicionado() // verifica ja foi adicionado um admin
+        private void verifica_Admin_Adicionado() // verifica se ja foi adicionado um admin
         {
             SqlCeConnection conexao = new SqlCeConnection("Data Source = " + Vars.base_dados);
             conexao.Open();

@@ -38,6 +38,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmd_FECHAR)).BeginInit();
             this.SuspendLayout();
             // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 1000;
+            timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // label_nome_programanome
             // 
             this.label_nome_programanome.AutoSize = true;
@@ -74,12 +80,6 @@
             this.cmd_cancelar.UseVisualStyleBackColor = false;
             this.cmd_cancelar.Click += new System.EventHandler(this.cmd_cancelar_Click);
             this.cmd_cancelar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmd_cancelar_KeyDown);
-            // 
-            // timer1
-            // 
-            timer1.Enabled = true;
-            timer1.Interval = 1000;
-            timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // panel6
             // 

@@ -23,7 +23,6 @@ namespace ControleAcesso2019
 
         private void cmd_cancelar_Click(object sender, EventArgs e)
         {
-
             Close();
         }
 
