@@ -11,3 +11,13 @@ Os componentes já sitados no repositorio https://github.com/caiojj/controle_ace
 
 https://www.youtube.com/watch?v=jrNVpYFj1XA&ab_channel=CaioJunior
 
+## Interface Gráfica
+
+### Registros dos colaboradores
+![](image/tela_principal_colaboradores.jpeg)
+
+### Historico geral de acesso
+![](image/tela_principal_historico_geral.jpeg)
+
+### Colaboradores que estão acessando o local
+![](image/tela_principal_acessando.jpeg)
